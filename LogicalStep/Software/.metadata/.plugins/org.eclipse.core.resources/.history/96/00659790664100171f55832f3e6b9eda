@@ -1,0 +1,165 @@
+/*
+ * "Hello World" example.
+ *
+ * This example prints 'Hello from Nios II' to the STDOUT stream. It runs on
+ * the Nios II 'standard', 'full_featured', 'fast', and 'low_cost' example
+ * designs. It runs with or without the MicroC/OS-II RTOS and requires a STDOUT
+ * device in your system's hardware.
+ * The memory footprint of this hosted application is ~69 kbytes by default
+ * using the standard reference design.
+ *
+ * For a reduced footprint version of this template, and an explanation of how
+ * to reduce the memory footprint for a given application, see the
+ * "small_hello_world" template.
+ *
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "system.h"
+#include "altera_avalon_pio_regs.h"
+#include "sys/alt_irq.h"
+
+
+static void stimulus_ISR(void* context, alt_u32 id)
+{
+	// do things
+	// code
+	IOWR( RESPONSE_OUT_BASE, 0, 0x1);
+	IOWR( RESPONSE_OUT_BASE, 0, 0x0);
+
+	// make sure to clear the interrupt
+	IOWR(STIMULUS_IN_BASE, 3, 0x0);
+}
+
+/*
+int main()
+{
+	// Initializing stimulus ISR
+	alt_irq_register( STIMULUS_IN_IRQ, (void *)0, stimulus_ISR );
+	IOWR(STIMULUS_IN_BASE, 2, 0xF);
+
+
+	int i;
+	int period;
+	int pulse_width;
+	int latency;
+	int pulses_missed;
+	int background_counter;
+	for(i=0; i < 2500; i++)
+	{
+		// Initializing EGM: period, pulse width, enable
+		period = (i+1)*2;
+		pulse_width = i+1;
+		IOWR( EGM_BASE, 0, 0x0);
+		IOWR( EGM_BASE, 2, period);
+		IOWR( EGM_BASE, 3, pulse_width);
+		IOWR( EGM_BASE, 0, 0x1);
+
+		// Wait until the EGM is done running before reading
+		while( IORD( EGM_BASE, 1) == 1)
+		{
+			background_counter += background();
+		}
+
+		latency = IORD( EGM_BASE, 0x4);
+		pulses_missed = IORD( EGM_BASE, 0x5);
+
+		// Send our data to the console
+		printf("%d ", (i+1)*2); // period
+		printf("%d ", i+1); // pulse width
+		printf("%d ", latency); // latency
+		printf("%d ", pulses_missed); // etc
+		printf("%d\n", background_counter); //
+		background_counter = 0;
+
+		// Reset EGM
+		IOWR( EGM_BASE, 0, 0x0);
+	}
+
+	return 0;
+}*/
+
+int main()
+{
+	int i;
+	int period;
+	int latency;
+	int pulse_width;
+	int pulses_missed;
+	int background_counter;
+
+	int num_background_cycles;
+	int first_up_trigger;
+	int first_down_trigger;
+
+	for(i=0; i < 2500; i++)
+	{
+		// Initializing EGM: period, pulse width, enable
+		period = (i+1)*2;
+		pulse_width = i+1;
+		IOWR( EGM_BASE, 0, 0x0);
+		IOWR( EGM_BASE, 2, period);
+		IOWR( EGM_BASE, 3, pulse_width);
+		IOWR( EGM_BASE, 0, 0x1);
+
+		num_background_cycles = 0;
+		first_up_trigger = 0;
+		first_down_trigger = 0;
+
+		int j;
+
+		// Wait until the EGM is done running before reading
+		while( IORD( EGM_BASE, 1) == 1 )
+		{
+			if ( first_up_trigger && first_down_trigger)
+			{
+				for(j = 0; j < num_background_cycles - 1; j++)
+				{
+
+				}
+			}
+			if (first_up_trigger == 0 && IORD(STIMULUS_IN_BASE, 0) == 1)
+			{
+				IOWR( RESPONSE_OUT_BASE, 0, 0x1);
+				IOWR( RESPONSE_OUT_BASE, 0, 0x0);
+
+				first_up_trigger = 1;
+
+				background_counter += background();
+				num_background_cycles++;
+			}
+
+			if (first_up_trigger)
+		}
+
+		latency = IORD( EGM_BASE, 0x4);
+		pulses_missed = IORD( EGM_BASE, 0x5);
+
+		// Send our data to the console
+		printf("%d ", (i+1)*2); // period
+		printf("%d ", i+1); // pulse width
+		printf("%d ", latency); // latency
+		printf("%d ", pulses_missed); // etc
+		printf("%d\n", background_counter); //
+		background_counter = 0;
+
+		// Reset EGM
+		IOWR( EGM_BASE, 0, 0x0);
+	}
+}
+
+
+
+int background()
+{
+	int j;
+	int grainsize = 100;
+	int g_taskProcessed = 0;
+	for(j = 0; j < grainsize; j++)
+	{
+		g_taskProcessed++;
+	}
+	return g_taskProcessed;
+}
