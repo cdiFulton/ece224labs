@@ -1,39 +1,9 @@
-18:18:52 **** Incremental Build of configuration Nios II for project lab2 ****
+11:33:39 **** Incremental Build of configuration Nios II for project lab2 ****
 make all 
 Info: Building ../lab2_bsp/
 C:/software/Altera/15.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../lab2_bsp/
 [BSP build complete]
-Info: Compiling main.c to obj/default/main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../lab2_bsp//HAL/inc -I../lab2_bsp/ -I../lab2_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED -DALTERA_AVALON_JTAG_UART_SMALL    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx  -o obj/default/main.o main.c
-main.c: In function 'main':
-main.c:272:5: warning: implicit declaration of function 'alt_printf' [-Wimplicit-function-declaration]
-     alt_printf ("Error: could not open audio device \n");
-     ^
-main.c:618:19: error: invalid operands to binary & (have 'uint8_t *' and 'unsigned int')
-      r_buf = Buff & 0x00000000FFFFFFFF;
-                   ^
-main.c:619:20: error: invalid operands to binary & (have 'uint8_t *' and 'long long unsigned int')
-      l_buf = (Buff & 0xFFFFFFFF00000000) >> 64;
-                    ^
-main.c:589:62: warning: unused variable 'num_channels' [-Wunused-variable]
-              int* bits_per_sample, sample_rate, block_align, num_channels;
-                                                              ^
-main.c:589:49: warning: unused variable 'block_align' [-Wunused-variable]
-              int* bits_per_sample, sample_rate, block_align, num_channels;
-                                                 ^
-main.c:589:36: warning: unused variable 'sample_rate' [-Wunused-variable]
-              int* bits_per_sample, sample_rate, block_align, num_channels;
-                                    ^
-main.c:589:19: warning: unused variable 'bits_per_sample' [-Wunused-variable]
-              int* bits_per_sample, sample_rate, block_align, num_channels;
-                   ^
-main.c:256:17: warning: unused variable 'ptr2' [-Wunused-variable]
-     char *ptr, *ptr2;
-                 ^
-main.c:255:6: warning: unused variable 'fifospace' [-Wunused-variable]
-  int fifospace;
-      ^
-make: *** [obj/default/main.o] Error 1
+[lab2 build complete]
 
-18:18:57 Build Finished (took 4s.578ms)
+11:33:51 Build Finished (took 12s.62ms)
 

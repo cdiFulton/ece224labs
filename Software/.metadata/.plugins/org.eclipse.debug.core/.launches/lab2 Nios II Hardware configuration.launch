@@ -4,7 +4,7 @@
 <stringAttribute key="byteStreamDeviceDeviceID" value="1"/>
 <stringAttribute key="byteStreamDeviceInstanceID" value="0"/>
 <booleanAttribute key="downloadProgram" value="true"/>
-<stringAttribute key="elfFile" value="N:\2B\ece224\lab2 backup\Software\lab2\lab2.elf"/>
+<stringAttribute key="elfFile" value="N:\2B\ece224\LogicalSteplab2\Software\lab2\lab2.elf"/>
 <stringAttribute key="org.eclipse.cdt.debug.mi.core.GDB_INIT" value=""/>
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_ID" value="com.altera.debug.cdi.gdb.plugin.Nios2GdbCdiDebugger"/>
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_START_MODE" value="run"/>

@@ -150,7 +150,8 @@ C_SRCS += fatfs_nios2_de1_spi.c
 C_SRCS += ff.c
 C_SRCS += monitor.c
 C_SRCS += uart_nios2.c
-C_SRCS += main.c
+C_SRCS += hello_world.c
+C_SRCS += helpers.c
 CXX_SRCS :=
 ASM_SRCS :=
 

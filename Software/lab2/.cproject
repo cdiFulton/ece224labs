@@ -24,6 +24,12 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.155448193.2061253282" name="main.c" rcbsApplicability="disable" resourcePath="main.c" toolsToInvoke="altera.tool.gnu.c.compiler.mingw.54573329.1944200095">
+						<tool id="altera.tool.gnu.c.compiler.mingw.54573329.1944200095" name="Nios II GCC C Compiler" superClass="altera.tool.gnu.c.compiler.mingw.54573329"/>
+					</fileInfo>
+					<sourceEntries>
+						<entry excluding="main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.155448193" moduleId="org.eclipse.cdt.core.settings" name="Nios II">
@@ -79,5 +85,10 @@
 				<runAllBuilders>false</runAllBuilders>
 			</target>
 		</buildTargets>
+	</storageModule>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Nios II">
+			<resource resourceType="PROJECT" workspacePath="/lab2"/>
+		</configuration>
 	</storageModule>
 </cproject>
